@@ -1,0 +1,12 @@
+C:\Users\adils\source\repos\19.07.2022\Core\bin\Debug\net5.0\Core.deps.json
+C:\Users\adils\source\repos\19.07.2022\Core\bin\Debug\net5.0\Core.dll
+C:\Users\adils\source\repos\19.07.2022\Core\bin\Debug\net5.0\Core.pdb
+C:\Users\adils\source\repos\19.07.2022\Core\obj\Debug\net5.0\Core.csproj.AssemblyReference.cache
+C:\Users\adils\source\repos\19.07.2022\Core\obj\Debug\net5.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adils\source\repos\19.07.2022\Core\obj\Debug\net5.0\Core.AssemblyInfoInputs.cache
+C:\Users\adils\source\repos\19.07.2022\Core\obj\Debug\net5.0\Core.AssemblyInfo.cs
+C:\Users\adils\source\repos\19.07.2022\Core\obj\Debug\net5.0\Core.csproj.CoreCompileInputs.cache
+C:\Users\adils\source\repos\19.07.2022\Core\obj\Debug\net5.0\Core.dll
+C:\Users\adils\source\repos\19.07.2022\Core\obj\Debug\net5.0\refint\Core.dll
+C:\Users\adils\source\repos\19.07.2022\Core\obj\Debug\net5.0\Core.pdb
+C:\Users\adils\source\repos\19.07.2022\Core\obj\Debug\net5.0\ref\Core.dll

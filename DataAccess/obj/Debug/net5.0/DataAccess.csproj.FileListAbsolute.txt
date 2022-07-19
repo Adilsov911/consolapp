@@ -1,0 +1,15 @@
+C:\Users\adils\source\repos\19.07.2022\DataAccess\bin\Debug\net5.0\DataAccess.deps.json
+C:\Users\adils\source\repos\19.07.2022\DataAccess\bin\Debug\net5.0\DataAccess.dll
+C:\Users\adils\source\repos\19.07.2022\DataAccess\bin\Debug\net5.0\DataAccess.pdb
+C:\Users\adils\source\repos\19.07.2022\DataAccess\bin\Debug\net5.0\Core.dll
+C:\Users\adils\source\repos\19.07.2022\DataAccess\bin\Debug\net5.0\Core.pdb
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\DataAccess.csproj.AssemblyReference.cache
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfo.cs
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CopyComplete
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\DataAccess.dll
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\refint\DataAccess.dll
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\DataAccess.pdb
+C:\Users\adils\source\repos\19.07.2022\DataAccess\obj\Debug\net5.0\ref\DataAccess.dll
