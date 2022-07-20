@@ -2,6 +2,7 @@
 using Core.Entities;
 using Core.Helpers;
 using DataAccess.Repositories.Implementations;
+using Menage.Contreoller;
 using System;
 
 
@@ -13,6 +14,7 @@ namespace Menagee
         static void Main(string[] args)
         {
             GroupRepositories groupRepositories = new GroupRepositories();
+            GroupController groupController = new GroupController();
             Helper.WriteTextWithColor(ConsoleColor.Green, "Welcome");
            Console.WriteLine("-----");
 
@@ -38,48 +40,34 @@ namespace Menagee
                         {
                             #region CreatGroup
                             case (int)Options.CreatGroup:
-                                Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter Group Name:");
-                                string name = Console.ReadLine();
-                                MaxSize:Helper.WriteTextWithColor(ConsoleColor.Cyan, "Enter group Max Size:");
-                                string size = Console.ReadLine();
-                                int maxSize;
-                                result = int.TryParse(size, out maxSize);
-                                if (result)
-                                {
-                                    Group group = new Group()
-                                    {
-                                        Name = name,
-                                        MaxSize = maxSize,
-
-                                    };
-                                    var createdGroup = groupRepositories.Create(group);
-                                    Helper.WriteTextWithColor(ConsoleColor.Green,$"{createdGroup.Name} is succesfully created with max size - {createdGroup.MaxSize}");
-                                }
-                                else
-                                {
-                                    Helper.WriteTextWithColor(ConsoleColor.Red, "Please, enter correct group max size");
-                                    goto MaxSize;
-                                }
+                                groupController.CreatGroup();
                                 break;
                             #endregion
+                            #region UpdateGroup
                             case (int)Options.UpdateGroup:
+                                groupController.UpdateGroup();
                                 break;
+                            #endregion
+                            #region DeleteGroup
                             case (int)Options.DeleteGroup:
+                                groupController.DeleteGroup();
                                 break;
+                            #endregion
+                            #region AllGroups
                             case (int)Options.AllGroups:
-                                var groups = groupRepositories.GetAll();
-                                Helper.WriteTextWithColor(ConsoleColor.Magenta, "All Groups");
-                                foreach(var group in groups)
-                                {
-                                    Console.WriteLine($"Name:{group.Name} , Max Size: {group.MaxSize}");
-                                }
-
+                                groupController.GetAll();
                                 break;
+                            #endregion
+                            #region GetGroupName
                             case (int)Options.GetGroupByName:
+                                groupController.GetGroupName();
                                 break;
+                            #endregion
+                            #region Exit
                             case (int)Options.Exit:
-                                Helper.WriteTextWithColor(ConsoleColor.Green, "Thanks Using our Aplication");
+                               groupController.Exit();
                                 return;
+                                #endregion 
                         }
                     }
                     else
@@ -90,7 +78,7 @@ namespace Menagee
                 }
                 else
                 {
-
+                    Helper.WriteTextWithColor(ConsoleColor.Red, "please enter correct number");
                 }
 
 

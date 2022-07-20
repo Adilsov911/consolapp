@@ -22,7 +22,7 @@ namespace DataAccess.Repositories.Implementations
 
         public void Delete(Group entity)
         {
-            DxContext.Groups.Add(entity);
+            DxContext.Groups.Remove(entity);
         }
 
         public Group Get(Predicate<Group> filter = null)
@@ -52,7 +52,7 @@ namespace DataAccess.Repositories.Implementations
         public void Update(Group entity)
         {
             var group = DxContext.Groups.Find(g=>g.Id == entity.Id);
-            if (group == null)
+            if (group != null)
             {
                 group.Name = entity.Name;
                 group.MaxSize = entity.MaxSize;

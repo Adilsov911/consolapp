@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menagee", "Menagee\Menagee.csproj", "{A9221676-3719-41D9-BF1C-4C3CB32FA207}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menage", "Menagee\Menage.csproj", "{A9221676-3719-41D9-BF1C-4C3CB32FA207}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{B80DF95D-9F8F-420E-8B5B-2EB29DC4B2CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{B80DF95D-9F8F-420E-8B5B-2EB29DC4B2CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{FCB04DA3-3D9E-4421-98F8-085EBB216F58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{FCB04DA3-3D9E-4421-98F8-085EBB216F58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
