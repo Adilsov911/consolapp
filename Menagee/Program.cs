@@ -15,8 +15,11 @@ namespace Menagee
         {
             GroupRepositories groupRepositories = new GroupRepositories();
             GroupController groupController = new GroupController();
+            StudentController studentController = new StudentController();
             Helper.WriteTextWithColor(ConsoleColor.Green, "Welcome");
            Console.WriteLine("-----");
+
+
 
             while (true)
             {
@@ -25,6 +28,11 @@ namespace Menagee
                 Helper.WriteTextWithColor(ConsoleColor.Yellow, "3 - Delete Group");
                 Helper.WriteTextWithColor(ConsoleColor.Yellow, "4 - GetAll Group");
                 Helper.WriteTextWithColor(ConsoleColor.Yellow, "5 - Get  Group by name");
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "6 - Creat Student");
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "7 - Update Student");
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "8 - Delete Student");
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "9- All Student By Group");
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "10- Get Student by group");
                 Helper.WriteTextWithColor(ConsoleColor.Yellow, "0 - Exit");
                 Console.WriteLine("-----");
                 Helper.WriteTextWithColor(ConsoleColor.Blue, "Select option");
@@ -34,7 +42,7 @@ namespace Menagee
                 bool result = int.TryParse(number, out selectnumber);
                 if (result)
                 {
-                    if (selectnumber >= 0 && selectnumber<=5)
+                    if (selectnumber >= 0 && selectnumber<=10)
                     {
                         switch (selectnumber)
                         {
@@ -63,6 +71,18 @@ namespace Menagee
                                 groupController.GetGroupName();
                                 break;
                             #endregion
+                            case (int)Options.CreatStudent:
+                                studentController.StudentCreat();
+                                break;
+                            case (int)Options.AllStudentsByGroup:
+                                studentController.GetStudentsByGroup();
+                                break;
+                            case (int)Options.DeleteStudent:
+                                studentController.StudentDelete();
+                                break;
+                            case (int)Options.GetStudentByGroup:
+                                studentController.GetStudentByGroup();
+                                break;
                             #region Exit
                             case (int)Options.Exit:
                                groupController.Exit();

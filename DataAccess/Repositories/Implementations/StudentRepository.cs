@@ -9,16 +9,21 @@ using DataAccess.Repositories.Base;
 
 namespace DataAccess.Repositories.Implementations
 {
-    internal class StudentRepository : IRepositary<Student>
+    public class StudentRepository : IRepositary<Student>
     {
+        private static int id;
         public Student Create(Student entity)
         {
+            id++;
+            entity.Id = id;
             DxContext.Students.Add(entity);
             return entity;
         }
 
         public void Delete(Student entity)
         {
+            id--;
+            entity.Id = id;
             DxContext.Students.Add(entity);
         }
 
