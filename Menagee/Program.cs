@@ -9,103 +9,148 @@ using System;
 namespace Menagee
 {
     internal class Program
-    { 
+    {
 
         static void Main(string[] args)
         {
-            GroupRepositories groupRepositories = new GroupRepositories();
-            GroupController groupController = new GroupController();
-            StudentController studentController = new StudentController();
-            Helper.WriteTextWithColor(ConsoleColor.Green, "Welcome");
-           Console.WriteLine("-----");
+            GroupController _groupController = new GroupController();
+            StudentController _studentController = new StudentController();
+
+
+
+           Helper.WriteTextWithColor(ConsoleColor.Green, "Welcome");
+            Console.WriteLine("--------------------------------------------------");
 
 
 
             while (true)
             {
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "1 - Creat Group");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "2 - Update Group");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "3 - Delete Group");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "4 - GetAll Group");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "5 - Get  Group by name");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "6 - Creat Student");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "7 - Update Student");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "8 - Delete Student");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "9- All Student By Group");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "10- Get Student by group");
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "0 - Exit");
-                Console.WriteLine("-----");
-                Helper.WriteTextWithColor(ConsoleColor.Blue, "Select option");
+
+
+            Mainmenu: Helper.WriteTextWithColor(ConsoleColor.Magenta, "Main Menu:");
+                Helper.WriteTextWithColor(ConsoleColor.Cyan, "Group Menu - 1");
+               Helper.WriteTextWithColor(ConsoleColor.Cyan, "Student Menu - 2");
+
+                Console.WriteLine("--------------------------------------------------");
+
+               Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
                 string number = Console.ReadLine();
 
-                int selectnumber;
-                bool result = int.TryParse(number, out selectnumber);
+                int selectedNumber;
+                bool result = int.TryParse(number, out selectedNumber);
+
                 if (result)
                 {
-                    if (selectnumber >= 0 && selectnumber<=10)
+                    if (selectedNumber == 1)
                     {
-                        switch (selectnumber)
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "1 - Create Group");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "2 - Update Group");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "3 - Delete Group");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "4 - All Group");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "5 - Get Group By Name");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "6 - Back Main Menu");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "0 - Exit");
+                        Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
+                        number = Console.ReadLine();
+
+
+                        result = int.TryParse(number, out selectedNumber);
+                        if (selectedNumber >= 0 && selectedNumber <= 6)
                         {
-                            #region CreatGroup
-                            case (int)Options.CreatGroup:
-                                groupController.CreatGroup();
-                                break;
-                            #endregion
-                            #region UpdateGroup
-                            case (int)Options.UpdateGroup:
-                                groupController.UpdateGroup();
-                                break;
-                            #endregion
-                            #region DeleteGroup
-                            case (int)Options.DeleteGroup:
-                                groupController.DeleteGroup();
-                                break;
-                            #endregion
-                            #region AllGroups
-                            case (int)Options.AllGroups:
-                                groupController.GetAll();
-                                break;
-                            #endregion
-                            #region GetGroupName
-                            case (int)Options.GetGroupByName:
-                                groupController.GetGroupName();
-                                break;
-                            #endregion
-                            case (int)Options.CreatStudent:
-                                studentController.StudentCreat();
-                                break;
-                            case (int)Options.AllStudentsByGroup:
-                                studentController.GetStudentsByGroup();
-                                break;
-                            case (int)Options.DeleteStudent:
-                                studentController.StudentDelete();
-                                break;
-                            case (int)Options.GetStudentByGroup:
-                                studentController.GetStudentByGroup();
-                                break;
-                            #region Exit
-                            case (int)Options.Exit:
-                               groupController.Exit();
-                                return;
-                                #endregion 
+                            switch (selectedNumber)
+                            {
+
+                                case (int)GroupOptions.CreateGroup:
+                                    _groupController.CreatGroup();
+                                    break;
+                                case (int)GroupOptions.UpdateGroup:
+                                    _groupController.UpdateGroup();
+                                    break;
+                                case (int)GroupOptions.DeleteGroup:
+                                    _groupController.DeleteGroup();
+                                    break;
+                                case (int)GroupOptions.AllGroup:
+                                    _groupController.GetAll();
+                                    break;
+                                case (int)GroupOptions.GetGroupByName:
+                                    _groupController.GetGroupName();
+                                    break;
+                                case (int)GroupOptions.Exit:
+                                    _groupController.Exit();
+                                    return;
+                                case (int)GroupOptions.BackMainMenu:
+                                    goto Mainmenu;
+                                    break;
+
+                            }
+                        }
+                        else
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Red, "Please enter correct number");
+
+                        }
+                    }
+                    else if (selectedNumber == 2)
+                    {
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "1 - Create Student");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "2 - Update Student");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "3 - Delete Student");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "4 - Get All Student By Group");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "5 - Get Student By Group");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "6 - Back Main Menu");
+                        Helper.WriteTextWithColor(ConsoleColor.Yellow, "0 - Exit");
+                        Helper.WriteTextWithColor(ConsoleColor.Magenta, "Select Options:");
+                        number = Console.ReadLine();
+
+
+                        result = int.TryParse(number, out selectedNumber);
+                        if (selectedNumber >= 0 && selectedNumber <= 6)
+                        {
+                            switch (selectedNumber)
+                            {
+
+                                case (int)StudentOptions.UpdateStudent:
+                                    _studentController.UpdateStudent();
+                                    break;
+                                case (int)StudentOptions.DeleteStudent:
+                                    _studentController.StudentDelete();
+                                    break;
+                                case (int)StudentOptions.GetAllStudentByGroup:
+                                    _studentController.GetAllStudentsByGroup();
+                                    break;
+                                case (int)StudentOptions.GetStudentByGroup:
+                                    _studentController.GetStudentByGroup();
+                                    break;
+                                case (int)StudentOptions.Exit:
+                                    _studentController.Exit();
+                                    return;
+                                case (int)StudentOptions.BackMainMenu:
+                                    goto Mainmenu;
+                                    break;
+
+                            }
+                        }
+                        else
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Red, "please enter correct number");
                         }
                     }
                     else
                     {
-                        Helper.WriteTextWithColor(ConsoleColor.Red, "please enter correct number");
+                        Helper.WriteTextWithColor(ConsoleColor.Red, "Please, Select Correct Options...");
                     }
-
                 }
                 else
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Red, "please enter correct number");
+                   Helper.WriteTextWithColor(ConsoleColor.Red, "Please, Select Correct Options...");
                 }
 
 
+
             }
-
-
-
         }
+        
     }
+
 }
+      

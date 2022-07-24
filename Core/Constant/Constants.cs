@@ -6,19 +6,25 @@ using System.Threading.Tasks;
 
 namespace Core.Constant
 {
-    public enum Options
+    public enum GroupOptions
     {
-        
-        Exit ,
-        CreatGroup,
+        Exit,
+        CreateGroup,
         UpdateGroup,
         DeleteGroup,
-        AllGroups,
+        AllGroup,
         GetGroupByName,
-        CreatStudent,
+        BackMainMenu,
+
+    }
+    public enum StudentOptions
+    {
+        Exit,
+        CreateStudent,
         UpdateStudent,
         DeleteStudent,
-        AllStudentsByGroup,
-        GetStudentByGroup
+        GetAllStudentByGroup,
+        GetStudentByGroup,
+        BackMainMenu,
     }
 }
