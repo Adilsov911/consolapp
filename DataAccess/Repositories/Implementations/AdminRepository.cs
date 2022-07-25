@@ -49,12 +49,12 @@ namespace DataAccess.Repositories.Implementations
             }
         }
 
-        public void Update(Group entity)
+        public void Update(Admin entity)
         {
             var admin = DxContext.Admins.Find(g => g.Id == entity.Id);
             if (admin != null)
             {
-                admin.Username = entity.Name;
+                admin.Username = admin.Username;
                 admin.Password = admin.Password;
 
 
@@ -63,9 +63,6 @@ namespace DataAccess.Repositories.Implementations
             }
         }
 
-        public void Update(Admin entity)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

@@ -26,7 +26,8 @@ namespace Menage.Contreoller
             Helper.WriteTextWithColor(ConsoleColor.Green, "Enter admin password:");
             string password = Console.ReadLine();
 
-            var admin = adminRepository.Get(g=>g.Username.ToLower() == username.ToLower()) && PasswordHasher.Decrypt(g.Password)== password);
+            var admin = adminRepository.Get(g => g.Username.ToLower() == username.ToLower() && PasswordHasher.Decrypt(g.Password) == password
+            );
             return admin;
         }
 

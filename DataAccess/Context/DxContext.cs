@@ -23,7 +23,7 @@ namespace DataAccess.Context
 
             string password2 = "adil1234";
             var hashedPassword2 = PasswordHasher.Encrypt(password2);
-            Admin admin2 = new Admin("username",hashedPassword2);
+            Admin admin2 = new Admin("admin2",hashedPassword2);
             Admins.Add(admin2);
         }
 
