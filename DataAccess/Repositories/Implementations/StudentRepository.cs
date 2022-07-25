@@ -58,10 +58,6 @@ namespace DataAccess.Repositories.Implementations
             {
                 student.Name = entity.Name;
                 student.Surname = entity.Surname;
-
-
-
-
             }
         }
     }
