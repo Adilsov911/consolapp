@@ -16,13 +16,30 @@ namespace DataAccess.Repositories.Implementations
         {
             id++;
             entity.Id = id;
-            DxContext.Admins.Add(entity);
+            try
+            {
+                DxContext.Admins.Add(entity);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return entity;
         }
 
         public void Delete(Admin entity)
         {
-            DxContext.Admins.Remove(entity);
+            try
+            {
+                DxContext.Admins.Remove(entity);
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
         }
 
         public Admin Get(Predicate<Admin> filter = null)
@@ -51,15 +68,20 @@ namespace DataAccess.Repositories.Implementations
 
         public void Update(Admin entity)
         {
-            var admin = DxContext.Admins.Find(g => g.Id == entity.Id);
-            if (admin != null)
+            try
             {
-                admin.Username = admin.Username;
-                admin.Password = admin.Password;
 
+              var admin = DxContext.Admins.Find(g => g.Id == entity.Id);
+                  if (admin != null)
+                  {
+                     admin.Username = admin.Username;
+                     admin.Password = admin.Password;
+                  }
+            }
+            catch (Exception e)
+            {
 
-
-
+                Console.WriteLine(e.Message);
             }
         }
 
