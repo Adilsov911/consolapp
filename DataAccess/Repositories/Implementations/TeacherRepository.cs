@@ -9,105 +9,99 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories.Implementations
 {
-    public class GroupRepositories : IRepositary<Group>
+    public class TeacherRepository : IRepositary<Teacher>
     {
         private static int id;
-        public Group Create(Group entity)
+        public Teacher Create(Teacher entity)
         {
             id++;
             entity.Id = id;
             try
             {
-                DxContext.Groups.Add(entity);
+                DxContext.teachers.Add(entity);
 
+                 return entity;
             }
             catch (Exception e)
             {
+               
+                return null;
 
-                Console.WriteLine(e.Message);
             }
-            return entity;
         }
 
-        public void Delete(Group entity)
+        public void Delete(Teacher entity)
         {
             try
             {
-                DxContext.Groups.Remove(entity);
-
+                id--;
+                entity.Id = id;
+                DxContext.teachers.Add(entity);
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
-
-
             }
         }
 
-        public Group Get(Predicate<Group> filter = null)
+        public Teacher Get(Predicate<Teacher> filter = null)
         {
             try
             {
 
                 if (filter == null)
                 {
-                    return DxContext.Groups[0];
+                    return DxContext.teachers[0];
                 }
                 else
                 {
-                    return DxContext.Groups.Find(filter);
+                    return DxContext.teachers.Find(filter);
                 }
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
                 return null;
             }
         }
 
-        public List<Group> GetAll(Predicate<Group> filter = null)
+        public List<Teacher> GetAll(Predicate<Teacher> filter = null)
         {
             try
             {
 
                 if (filter == null)
                 {
-                    return DxContext.Groups;
+                    return DxContext.teachers;
                 }
                 else
                 {
-                    return DxContext.Groups.FindAll(filter);
+                    return DxContext.teachers.FindAll(filter);
                 }
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
+
                 return null;
             }
         }
 
-        public void Update(Group entity)
+        public void Update(Teacher entity)
         {
             try
             {
 
-                var group = DxContext.Groups.Find(g => g.Id == entity.Id);
-                if (group != null)
+                var teacher = DxContext.teachers.Find(g => g.Id == entity.Id);
+                if (teacher == null)
                 {
-                    group.Name = entity.Name;
-                    group.MaxSize = entity.MaxSize;
-
-
+                    teacher.Name = entity.Name;
+                    teacher.Surname = entity.Surname;
                 }
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
-                
             }
         }
     }

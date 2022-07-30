@@ -16,6 +16,7 @@ namespace Menagee
             GroupController groupController = new GroupController();
             StudentController studentController = new StudentController();
             AdminController admincontroller = new AdminController();
+            TeacherController teacherController = new TeacherController();
 
            Admin: var admin = admincontroller.Authenticade();
 
@@ -26,9 +27,11 @@ namespace Menagee
 
                 while (true)
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Magenta, "Main Menu:");
+                    Helper.WriteTextWithColor(ConsoleColor.Blue, "Main Menu:");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "Group Menu - 1");
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, "Student Menu - 2");
+                    Helper.WriteTextWithColor(ConsoleColor.Cyan, "Teacher Menu - 3");
+
 
                     Console.WriteLine("--------------------------------------------------");
 
@@ -107,7 +110,9 @@ namespace Menagee
                             {
                                 switch (selectedNumber)
                                 {
-
+                                    case (int)StudentOptions.CreateStudent:
+                                        studentController.StudentCreat();
+                                        break;
                                     case (int)StudentOptions.UpdateStudent:
                                         studentController.UpdateStudent();
                                         break;
@@ -123,10 +128,49 @@ namespace Menagee
                                     case (int)StudentOptions.Exit:
                                         studentController.Exit();
                                         return;
-                                    case (int)StudentOptions.BackMainMenu:
-                                      
-                                        break;
+                                   
 
+                                }
+                            }
+                            else
+                            {
+                                Helper.WriteTextWithColor(ConsoleColor.Red, "please enter correct number");
+                            }
+                        }
+                        else if (selectedNumber == 3)
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Green, "1 - Creat Teacher");
+                            Helper.WriteTextWithColor(ConsoleColor.Green, "2 - Update Teacher");
+                            Helper.WriteTextWithColor(ConsoleColor.Green, "3 - Delete Teacher");
+                            Helper.WriteTextWithColor(ConsoleColor.Green, "4 - Get All Teacher");
+                            Helper.WriteTextWithColor(ConsoleColor.Green, "5 - Add Teacher To Group");
+                            Helper.WriteTextWithColor(ConsoleColor.Green, "6 - All Groups Of Teachers");
+                            Helper.WriteTextWithColor(ConsoleColor.Green, "0 - Exit");
+                            number = Console.ReadLine();
+
+                            result = int.TryParse(number, out selectedNumber);
+                            if (selectedNumber >= 0 && selectedNumber <= 6)
+                            {
+                                switch (selectedNumber)
+                                {
+                                    case (int)TeacherOptions.CreatTeacher:
+                                        teacherController.Creat();
+                                        break;
+                                    case (int)TeacherOptions.GetAll:
+                                        teacherController.GetAll();
+                                        break;
+                                    case (int)TeacherOptions.UpdateTeacher:
+                                        teacherController.Update();
+                                        break;
+                                    case (int)TeacherOptions.DeleteTeacher:
+                                        teacherController.Delete();
+                                        break;
+                                    case (int)TeacherOptions.AddTeacherGroup:
+                                        teacherController.AddGroupToTeacher();
+                                        break;
+                                    case (int)TeacherOptions.AllGroupsOfTeachers:
+                                        teacherController.GetAllGroupsTeachers();
+                                        break;
                                 }
                             }
                             else

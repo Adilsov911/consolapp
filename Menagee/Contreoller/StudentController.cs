@@ -20,7 +20,7 @@ namespace Menage.Contreoller
             var groups = groupRepositories.GetAll();
             if (groups.Count != 0)
             {
-                 Helper.WriteTextWithColor(ConsoleColor.Magenta, "Enter student name:");
+                Helper.WriteTextWithColor(ConsoleColor.Magenta, "Enter student name:");
                 string name = Console.ReadLine();
 
                 Helper.WriteTextWithColor(ConsoleColor.Magenta, "Enter student surname:");
@@ -48,7 +48,7 @@ namespace Menage.Contreoller
                         var student = new Student
                         {
                             Name = name,
-                            
+
                             Surname = surname,
                             Age = studentAge,
                             Group = dbGroup
@@ -74,98 +74,107 @@ namespace Menage.Contreoller
 
 
             }
+
         }
+        
         #endregion
         #region GetAllStudentsByGroup
         public void GetAllStudentsByGroup()
         {
             var groups = groupRepositories.GetAll();
-
-        Grouplist: Helper.WriteTextWithColor(ConsoleColor.Yellow, "All Group");
-
-            foreach (var group in groups)
+            if (groups.Count > 0)
             {
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, group.Name);
-            }
-            Helper.WriteTextWithColor(ConsoleColor.Magenta, "Enter Group Name: ");
-            string groupName = Console.ReadLine();
 
-            var dbGroup = groupRepositories.Get(g => g.Name.ToLower()==groupName.ToLower());
-            if (dbGroup!=null)
-            {
-                var groupStudents = studentRepositories.GetAll(s => s.Group.Id == dbGroup.Id);
-                if (groupStudents.Count!= 0)
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "All Group");
+
+                foreach (var group in groups)
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Magenta, "All studets of the group:");
-                    foreach(var groupStudent in groupStudents)
+                    Helper.WriteTextWithColor(ConsoleColor.Yellow, $"Id- {group.Id} {group.Name}");
+                }
+            id: Helper.WriteTextWithColor(ConsoleColor.Magenta, "Enter Group Id: ");
+                string id = Console.ReadLine();
+                int groupId;
+                var result = int.TryParse(id, out groupId);
+                if (result)
+                {
+                    var group = groupRepositories.Get(g => g.Id == groupId);
+                    if (group != null)
                     {
-                        Helper.WriteTextWithColor(ConsoleColor.Green, $"Name:{groupStudent.Name} Surname: {groupStudent.Surname} Age: {groupStudent.Age} ID: {groupStudent.Id}");
+                        var groupStudent = studentRepositories.GetAll();
+                        if (groupStudent.Count != 0)
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Magenta, "All studets of the group:");
+                            foreach (var Student in groupStudent)
+                            {
+                                Helper.WriteTextWithColor(ConsoleColor.Green, $"Name:{Student.Name} Surname: {Student.Surname} Age: {Student.Age} ID: {Student.Id}");
+
+                            }
+                        }
+                        else
+                        {
+                            Helper.WriteTextWithColor(ConsoleColor.Red, "Not student this group");
+                        }
+
 
                     }
+                    else
+                    {
+                        Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct id");
+                        goto id;
+                    }
+
                 }
                 else
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Red,$"There is no student in this group - {dbGroup.Name}");
-                    goto Grouplist;
+                    Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct format id");
                 }
+
+
             }
             else
             {
-                Helper.WriteTextWithColor(ConsoleColor.Red, "Including group dosen't exist");
-                goto Grouplist;
+                Helper.WriteTextWithColor(ConsoleColor.Red, "Nothing groups");
             }
+
         }
         #endregion
         #region DeleteStudent
         public void StudentDelete()
         {
-            var groups = groupRepositories.GetAll();
-
-           Helper.WriteTextWithColor(ConsoleColor.Yellow, "All Group");
-
-            foreach (var group in groups)
+            var students = studentRepositories.GetAll();
+            if (students.Count > 0)
+                Helper.WriteTextWithColor(ConsoleColor.Green, "All Students List");
             {
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, group.Name);
-            }
-            Helper.WriteTextWithColor(ConsoleColor.Magenta, "Enter Group Name: ");
-            string groupName = Console.ReadLine();
-
-            var dbGroup = groupRepositories.Get(g => g.Name.ToLower() == groupName.ToLower());
-            if (dbGroup != null)
-            {
-
-                    Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter Name Student:");
-                string name = Console.ReadLine();
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter Surname Student:");
-                string surname = Console.ReadLine();
-                var student = studentRepositories.Get(g => g.Name.ToLower() == name.ToLower());
-                if (name != null)
+                foreach (var student in students)
                 {
-                    student = studentRepositories.Get(g => g.Surname.ToLower() == surname.ToLower());
-                    if (surname!=null)
+                    Helper.WriteTextWithColor(ConsoleColor.Green, $"Id - {student.Id} FullName - {student.Name} {student.Surname}");
+                }
+            id: Helper.WriteTextWithColor(ConsoleColor.Green, "Enter student Id");
+                string id = Console.ReadLine();
+                int studentId;
+                var result = int.TryParse(id, out studentId);
+                if (true)
+                {
+                    var student = studentRepositories.Get(t => t.Id == studentId);
+                    if (student != null)
                     {
+                        string fullName = $"{student.Name} {student.Surname}";
                         studentRepositories.Delete(student);
-                        Helper.WriteTextWithColor(ConsoleColor.Green, $"{name} {surname} is Student Deleted");
-                        
+                        Helper.WriteTextWithColor(ConsoleColor.Green, $"{student.Name} {student.Surname} is deleted");
 
                     }
                     else
                     {
-                        Helper.WriteTextWithColor(ConsoleColor.Red, "There is no student with this Surname");
+                        Helper.WriteTextWithColor(ConsoleColor.Red, "Student donsn't with dis id");
+                        goto id;
                     }
                 }
                 else
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Red, "There is no student with this Name");
+                    Helper.WriteTextWithColor(ConsoleColor.Red, "Enter correct id");
+                    goto id;
                 }
-
             }
-            else
-            {
-                Helper.WriteTextWithColor(ConsoleColor.Red, "There not this grouop");
-            }
-
-
         }
         #endregion
         #region GetStudentByGroup
@@ -173,7 +182,7 @@ namespace Menage.Contreoller
         {
             var groups = groupRepositories.GetAll();
 
-         Helper.WriteTextWithColor(ConsoleColor.Yellow, "All Group");
+            Helper.WriteTextWithColor(ConsoleColor.Yellow, "All Group");
 
             foreach (var group in groups)
             {
@@ -187,8 +196,8 @@ namespace Menage.Contreoller
             var dbGroup = groupRepositories.GetAll(g => g.Name.ToLower() == groupName.ToLower());
             if (dbGroup != null)
             {
-              var  student = studentRepositories.Get(g => g.Name.ToLower() == name.ToLower());
-                if (name!=null)
+                var student = studentRepositories.Get(g => g.Name.ToLower() == name.ToLower());
+                if (name != null)
                 {
                     Helper.WriteTextWithColor(ConsoleColor.Cyan, $"Name student: {student.Name} Surname: {student.Surname} Age : {student.Age}");
                 }
@@ -200,7 +209,7 @@ namespace Menage.Contreoller
             else
             {
                 Helper.WriteTextWithColor(ConsoleColor.Red, "Including group dosen't exist");
-                
+
             }
         }
         #endregion
@@ -208,58 +217,58 @@ namespace Menage.Contreoller
         public void UpdateStudent()
         {
 
-                 GetAllStudentsByGroup();
-          
-                Helper.WriteTextWithColor(ConsoleColor.Yellow, "Please enter id");
-                string id = Console.ReadLine();
-                int studentid;
-                bool result = int.TryParse(id, out studentid);
-                var student = studentRepositories.Get(s => s.Id == studentid);
-                if (studentid!=null)
+            GetAllStudentsByGroup();
+
+            Helper.WriteTextWithColor(ConsoleColor.Yellow, "Please enter id");
+            string id = Console.ReadLine();
+            int studentid;
+            bool result = int.TryParse(id, out studentid);
+            var student = studentRepositories.Get(s => s.Id == studentid);
+            if (studentid != null)
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter new student name");
+                string newName = Console.ReadLine();
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter new student surname");
+                string newSurname = Console.ReadLine();
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "Please enter new student age");
+                string Age = Console.ReadLine();
+                byte newAge;
+                result = byte.TryParse(Age, out newAge);
+                Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter new group name");
+                string newGroupName = Console.ReadLine();
+                if (student.Group.Name.ToLower() == newGroupName)
                 {
-                    Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter new student name");
-                    string newName= Console.ReadLine();
-                    Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter new student surname");
-                    string newSurname = Console.ReadLine();
-                    Helper.WriteTextWithColor(ConsoleColor.Yellow, "Please enter new student age");
-                    string Age = Console.ReadLine();
-                    byte newAge;
-                    result=byte.TryParse(Age, out newAge);
-                    Helper.WriteTextWithColor(ConsoleColor.Yellow, "Enter new group name");
-                    string newGroupName = Console.ReadLine();
-                    if (student.Group.Name.ToLower()==newGroupName)
+                    student.Surname = newSurname;
+                    student.Name = newName;
+                    student.Age = newAge;
+                    studentRepositories.Update(student);
+                    Helper.WriteTextWithColor(ConsoleColor.Green, $"New name :{newName} New Surname: {newSurname} New Age: {newAge} Group: {newGroupName}");
+                }
+                else
+                {
+
+                    if (student.Group != null)
                     {
                         student.Surname = newSurname;
                         student.Name = newName;
                         student.Age = newAge;
                         studentRepositories.Update(student);
-                        Helper.WriteTextWithColor(ConsoleColor.Green, $"New name :{newName} New Surname: {newSurname} New Age: {newAge} Group: {newGroupName}");
-                }
-                    else
-                    {
-                        
-                        if (student.Group!=null)
-                        {
-                            student.Surname = newSurname;
-                            student.Name = newName;
-                            student.Age = newAge;
-                            studentRepositories.Update(student);
-                            student.Group.CurrentSize--;
-                            student.Group = groupRepositories.Get(g=>g.Name.ToLower()== newGroupName.ToLower()); 
-                            student.Group.CurrentSize++;
-                            Helper.WriteTextWithColor(ConsoleColor.Green, $"New Name: {newName} New Surname: {newSurname} New Age: {newAge} New Group Name: {newGroupName}");
-
-                        }
-                        
+                        student.Group.CurrentSize--;
+                        student.Group = groupRepositories.Get(g => g.Name.ToLower() == newGroupName.ToLower());
+                        student.Group.CurrentSize++;
+                        Helper.WriteTextWithColor(ConsoleColor.Green, $"New Name: {newName} New Surname: {newSurname} New Age: {newAge} New Group Name: {newGroupName}");
 
                     }
+
+
                 }
-                else
-                {
-                    Helper.WriteTextWithColor(ConsoleColor.Red, "please enter correct student ID");
-                
-                }
-           
+            }
+            else
+            {
+                Helper.WriteTextWithColor(ConsoleColor.Red, "please enter correct student ID");
+
+            }
+
         }
 
         #endregion

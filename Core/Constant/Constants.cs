@@ -24,7 +24,17 @@ namespace Core.Constant
         UpdateStudent,
         DeleteStudent,
         GetAllStudentByGroup,
-        GetStudentByGroup,
-        BackMainMenu,
+        GetStudentByGroup
+        
+    }
+    public enum TeacherOptions
+    {
+        Exit,
+        CreatTeacher,
+        UpdateTeacher,
+        DeleteTeacher,
+        GetAll,
+        AddTeacherGroup,
+        AllGroupsOfTeachers
     }
 }
